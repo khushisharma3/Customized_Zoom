@@ -11,6 +11,7 @@ import { fileURLToPath, URL } from 'url';
 import { start } from './server/server.js';
 import indexRoutes from './server/routes/index.js';
 import authRoutes from './server/routes/auth.js';
+import path from 'path';
 
 import { appName, port, redirectUri } from './config.js';
 
@@ -87,6 +88,7 @@ app.use(logger('dev', { stream: { write: (msg) => dbg(msg) } }));
 
 // serve our app folder
 app.use(express.static(staticDir));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /* Routing */
 app.use('/', indexRoutes);
